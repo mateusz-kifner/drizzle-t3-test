@@ -1,0 +1,37 @@
+name: Deploy shirterp.eu
+
+on: [workflow_dispatch]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./
+
+    env:
+      CI: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set .env
+        run: |
+          echo "${{secrets.ENV_FILE}}" > .env
+      - name: yarn && yarn build
+        run: |
+          node --version
+          yarn
+          yarn build --no-lint
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "."
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/node_modules/"
