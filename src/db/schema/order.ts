@@ -1,16 +1,17 @@
 import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date } from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
 import { addresses } from "./addresses";
+import { relations } from "drizzle-orm";
 
 export const orders = pgTable("orders", {
-  id: integer("id").notNull().primaryKey(),
+  id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }),
   status: varchar("status", { length: 255 }).default("planned"),
   notes: varchar("notes", { length: 255 }),
   price: varchar("price", { length: 255 }),
   isPricePaid: boolean("is_price_paid").default(false),
   dateOfCompletion: date("date_of_completion"),
-  address: integer("address").references(()=> addresses.id),
+  // address: integer("address").references(()=> addresses.id),
 
   // spreadsheets: text('spreadsheet[]_undefined'),
   // designs: text('design[]_undefined'),
@@ -22,6 +23,13 @@ export const orders = pgTable("orders", {
   // client: text('client_id)').references(()=> client.id),
   // address: text('typeaddress_id)').references(()=> address.id),
   // clientId: integer("client_id"),
-  // addressId: integer("address_id"),
+  addressId: integer("address_id"),
 ...metadata
   })
+
+export const ordersRelations = relations(orders, ({ one }) => ({
+  address: one(addresses, {
+    fields: [orders.addressId],
+    references: [addresses.id],
+  }),
+}));
