@@ -1,5 +1,5 @@
 import { integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
 
 export const files = pgTable("files", {
   id: serial("id").primaryKey(),

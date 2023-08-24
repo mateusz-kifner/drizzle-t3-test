@@ -1,5 +1,5 @@
 import { decimal, json, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
  
 
 export const expenses = pgTable("expenses",{

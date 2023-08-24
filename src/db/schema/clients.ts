@@ -1,5 +1,6 @@
 import { integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
+import { addresses } from "./addresses";
 
 export const client = pgTable("client", {
   id: serial("id").primaryKey(),
@@ -10,5 +11,6 @@ export const client = pgTable("client", {
   phoneNumber: varchar("phone_number", { length: 255 }),
   companyName: varchar("company_name", { length: 255 }),
   notes: text("notes"),
+  address: integer("address").references(()=> addresses.id),
   ...metadata
   })

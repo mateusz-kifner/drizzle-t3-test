@@ -1,5 +1,6 @@
 import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
+import { addresses } from "./addresses";
 
 export const orders = pgTable("orders", {
   id: integer("id").notNull().primaryKey(),
@@ -9,6 +10,8 @@ export const orders = pgTable("orders", {
   price: varchar("price", { length: 255 }),
   isPricePaid: boolean("is_price_paid").default(false),
   dateOfCompletion: date("date_of_completion"),
+  address: integer("address").references(()=> addresses.id),
+
   // spreadsheets: text('spreadsheet[]_undefined'),
   // designs: text('design[]_undefined'),
   // emails: text('emailmessage[]_undefined'),

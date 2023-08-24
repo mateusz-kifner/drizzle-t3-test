@@ -1,5 +1,5 @@
 import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date, json } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
 
 
 export const design = pgTable("design", {

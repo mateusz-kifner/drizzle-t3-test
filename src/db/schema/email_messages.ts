@@ -1,5 +1,5 @@
 import { integer, json, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
 
 export const email_messages = pgTable("email_messages", {
   id: serial("id").primaryKey(),

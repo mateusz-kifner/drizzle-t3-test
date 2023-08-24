@@ -1,5 +1,5 @@
 import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date } from "drizzle-orm/pg-core";
-import { metadata } from "./metadata";
+import { metadata } from "./_metadata";
 
 export const addresses = pgTable("addresses", {
   id: serial("id").primaryKey(),
