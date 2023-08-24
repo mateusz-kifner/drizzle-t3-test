@@ -1,8 +1,17 @@
-import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar,
+  doublePrecision,
+  date,
+} from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
 import { relations } from "drizzle-orm";
 import { clients } from "./clients";
-import { filesToOrders } from "./files_to_orders";
 
 export const addresses = pgTable("addresses", {
   id: serial("id").primaryKey(),
@@ -13,9 +22,9 @@ export const addresses = pgTable("addresses", {
   postCode: varchar("post_code", { length: 255 }),
   city: varchar("city", { length: 255 }),
   province: varchar("province", { length: 255 }).default("pomorskie"),
-...metadata
-  })
+  ...metadata,
+});
 
-  export const addressesRelations = relations(addresses, ({ many }) => ({
-    clients: many(clients),
-  }));
+export const addressesRelations = relations(addresses, ({ many }) => ({
+  clients: many(clients),
+}));

@@ -3,7 +3,6 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as addressesSchema from "./schema/addresses";
 import * as clientsSchema from "./schema/clients";
-import * as designsSchema from "./schema/designs";
 import * as spreadsheetsSchema from "./schema/spreadsheets";
 import * as filesSchema from "./schema/files";
 import * as ordersSchema from "./schema/orders";
@@ -11,6 +10,7 @@ import * as productsSchema from "./schema/products";
 import * as usersSchema from "./schema/users";
 import * as emailMessagesSchema from "./schema/email_messages";
 import * as expensesSchema from "./schema/expenses";
+import * as emailCredentialsSchema from "./schema/email_credentials";
 import * as filesToOrdersSchema from "./schema/files_to_orders";
 
 // for migrations
@@ -23,7 +23,6 @@ export const db = drizzle(queryClient, {
   schema: {
     ...addressesSchema,
     ...clientsSchema,
-    ...designsSchema,
     ...emailMessagesSchema,
     ...filesSchema,
     ...filesToOrdersSchema,
@@ -32,5 +31,6 @@ export const db = drizzle(queryClient, {
     ...expensesSchema,
     ...usersSchema,
     ...spreadsheetsSchema,
+    ...emailCredentialsSchema,
   },
 });
