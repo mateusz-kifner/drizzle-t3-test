@@ -1,5 +1,14 @@
-import { integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
+import { filesToOrders } from "./files_to_orders";
+import { relations } from "drizzle-orm";
 
 export const files = pgTable("files", {
   id: serial("id").primaryKey(),
@@ -13,5 +22,9 @@ export const files = pgTable("files", {
   token: varchar("token", { length: 32 }),
   width: integer("width"),
   height: integer("height"),
-  ...metadata
-  })
+  ...metadata,
+});
+
+export const filesRelations = relations(files, ({ many }) => ({
+  filesToOrders: many(filesToOrders),
+}));

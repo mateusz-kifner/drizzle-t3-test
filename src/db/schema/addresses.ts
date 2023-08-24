@@ -1,9 +1,8 @@
 import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date } from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
 import { relations } from "drizzle-orm";
-import { users } from "./users";
 import { clients } from "./clients";
-import { orders } from "./order";
+import { filesToOrders } from "./files_to_orders";
 
 export const addresses = pgTable("addresses", {
   id: serial("id").primaryKey(),
@@ -19,5 +18,4 @@ export const addresses = pgTable("addresses", {
 
   export const addressesRelations = relations(addresses, ({ many }) => ({
     clients: many(clients),
-    orders:many(orders)
   }));
