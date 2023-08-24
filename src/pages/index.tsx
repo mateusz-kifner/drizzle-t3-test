@@ -4,6 +4,7 @@ import { api } from "@/utils/api";
 
 export default function Home() {
   const hello = api.example.hello.useQuery();
+  const {mutate} = api.example.add.useMutation()
 
   return (
     <>
@@ -44,6 +45,8 @@ export default function Home() {
           <p className="text-2xl text-white">
             {hello.data ? JSON.stringify(hello.data,undefined,2) : "Loading tRPC query..."}
           </p>
+          <button onClick={()=>{mutate({name:"test"})}}>test
+            </button>
         </div>
       </main>
     </>
