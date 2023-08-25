@@ -28,7 +28,7 @@ export const files = pgTable("files", {
 });
 
 export const filesRelations = relations(files, ({ many }) => ({
-  messagesFiles: many(email_messages),
-  emailMessagesToFiles: many(email_messages_to_files),
-  ordersToFiles: many(orders_to_files),
+  messages: many(email_messages),
+  emailMessages: many(email_messages_to_files),
+  orders: many(orders_to_files),
 }));

@@ -17,6 +17,7 @@ import { orders_to_files } from "./orders_to_files";
 import { clients } from "./clients";
 import { orders_to_products } from "./orders_to_products";
 import { orders_to_users } from "./orders_to_users";
+import { orders_to_email_messages } from "./orders_to_email_messages";
 
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
@@ -50,4 +51,5 @@ export const ordersRelations = relations(orders, ({ one, many }) => ({
   files: many(orders_to_files),
   products: many(orders_to_products),
   employees: many(orders_to_users),
+  emails: many(orders_to_email_messages),
 }));
