@@ -15,6 +15,7 @@ import { relations } from "drizzle-orm";
 import { files } from "./files";
 import { ordersToFiles } from "./orders_to_files";
 import { clients } from "./clients";
+import { ordersToProducts } from "./orders_to_products";
 
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
@@ -49,4 +50,5 @@ export const ordersRelations = relations(orders, ({ one, many }) => ({
     references: [clients.id],
   }),
   ordersToFiles: many(ordersToFiles),
+  ordersToProducts: many(ordersToProducts),
 }));

@@ -1,5 +1,17 @@
-import { boolean, integer, pgTable, serial, text, timestamp, varchar,doublePrecision, date } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar,
+  doublePrecision,
+  date,
+} from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
+import { relations } from "drizzle-orm";
+import { ordersToProducts } from "./orders_to_products";
 
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
@@ -7,5 +19,9 @@ export const products = pgTable("products", {
   category: varchar("category", { length: 255 }),
   description: text("description"),
   iconId: integer("iconId"),
-...metadata
-  })
+  ...metadata,
+});
+
+export const productsRelations = relations(products, ({ one, many }) => ({
+  ordersToProducts: many(ordersToProducts),
+}));
