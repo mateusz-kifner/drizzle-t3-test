@@ -1,8 +1,14 @@
-import { integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
 import { addresses } from "./addresses";
 import { relations } from "drizzle-orm";
-
 
 export const clients = pgTable("clients", {
   id: serial("id").primaryKey(),
@@ -14,14 +20,12 @@ export const clients = pgTable("clients", {
   companyName: varchar("company_name", { length: 255 }),
   notes: text("notes"),
   addressId: integer("addressId"),
-  ...metadata
-  })
+  ...metadata,
+});
 
-export const clientsRelations = relations(clients, ({ one }) => ({
+export const clients_relations = relations(clients, ({ one }) => ({
   address: one(addresses, {
     fields: [clients.addressId],
     references: [addresses.id],
   }),
 }));
-
-

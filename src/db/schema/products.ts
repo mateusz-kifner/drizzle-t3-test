@@ -22,6 +22,6 @@ export const products = pgTable("products", {
   ...metadata,
 });
 
-export const productsRelations = relations(products, ({ one, many }) => ({
+export const products_relations = relations(products, ({ one, many }) => ({
   orders: many(orders_to_products),
 }));

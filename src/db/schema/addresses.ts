@@ -25,6 +25,6 @@ export const addresses = pgTable("addresses", {
   ...metadata,
 });
 
-export const addressesRelations = relations(addresses, ({ many }) => ({
+export const addresses_relations = relations(addresses, ({ many }) => ({
   clients: many(clients),
 }));

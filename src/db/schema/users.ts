@@ -15,7 +15,7 @@ export const users = pgTable("users", {
   ...metadata,
 });
 
-export const usersRelations = relations(users, ({ one, many }) => ({
+export const users_relations = relations(users, ({ one, many }) => ({
   orders: many(orders_to_users),
   emailCredentials: many(email_credentials_to_users),
 }));
