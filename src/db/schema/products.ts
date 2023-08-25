@@ -11,7 +11,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
 import { relations } from "drizzle-orm";
-import { ordersToProducts } from "./orders_to_products";
+import { orders_to_products } from "./orders_to_products";
 
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
@@ -23,5 +23,5 @@ export const products = pgTable("products", {
 });
 
 export const productsRelations = relations(products, ({ one, many }) => ({
-  ordersToProducts: many(ordersToProducts),
+  orders: many(orders_to_products),
 }));

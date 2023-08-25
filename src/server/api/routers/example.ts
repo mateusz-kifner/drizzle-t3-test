@@ -16,7 +16,7 @@ export const exampleRouter = createTRPCRouter({
       where: eq(orders.id, 1),
       extras: {},
       with: {
-        filesToOrders: {
+        files: {
           with: { files: true },
           columns: { fileId: false, orderId: false },
         },

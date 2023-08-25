@@ -3,7 +3,7 @@ import { integer, pgTable, primaryKey } from "drizzle-orm/pg-core";
 import { products } from "./products";
 import { orders } from "./orders";
 
-export const ordersToProducts = pgTable(
+export const orders_to_products = pgTable(
   "orders_to_products",
   {
     orderId: integer("order_id")
@@ -18,15 +18,15 @@ export const ordersToProducts = pgTable(
   }),
 );
 
-export const ordersToProductsRelations = relations(
-  ordersToProducts,
+export const orders_to_products_relations = relations(
+  orders_to_products,
   ({ one }) => ({
     orders: one(orders, {
-      fields: [ordersToProducts.orderId],
+      fields: [orders_to_products.orderId],
       references: [orders.id],
     }),
     products: one(products, {
-      fields: [ordersToProducts.productId],
+      fields: [orders_to_products.productId],
       references: [products.id],
     }),
   }),

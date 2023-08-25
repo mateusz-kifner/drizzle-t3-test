@@ -7,8 +7,10 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
-import { ordersToFiles } from "./orders_to_files";
+import { orders_to_files } from "./orders_to_files";
 import { relations } from "drizzle-orm";
+import { email_messages } from "./email_messages";
+import { email_messages_to_files } from "./email_messages_to_files";
 
 export const files = pgTable("files", {
   id: serial("id").primaryKey(),
@@ -26,5 +28,7 @@ export const files = pgTable("files", {
 });
 
 export const filesRelations = relations(files, ({ many }) => ({
-  ordersToFiles: many(ordersToFiles),
+  messagesFiles: many(email_messages),
+  emailMessagesToFiles: many(email_messages_to_files),
+  ordersToFiles: many(orders_to_files),
 }));
