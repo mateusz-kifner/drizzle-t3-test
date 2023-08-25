@@ -7,7 +7,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
-import { filesToOrders } from "./files_to_orders";
+import { ordersToFiles } from "./orders_to_files";
 import { relations } from "drizzle-orm";
 
 export const files = pgTable("files", {
@@ -26,5 +26,5 @@ export const files = pgTable("files", {
 });
 
 export const filesRelations = relations(files, ({ many }) => ({
-  filesToOrders: many(filesToOrders),
+  ordersToFiles: many(ordersToFiles),
 }));

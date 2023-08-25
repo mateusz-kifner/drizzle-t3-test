@@ -1,9 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
 import { users } from "@/db/schema/users";
-import { env } from "@/env.mjs";
 import { db } from "@/db/db";
 import { eq } from "drizzle-orm";
 import { orders } from "@/db/schema/orders";

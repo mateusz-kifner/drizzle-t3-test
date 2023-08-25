@@ -11,7 +11,7 @@ import * as usersSchema from "./schema/users";
 import * as emailMessagesSchema from "./schema/email_messages";
 import * as expensesSchema from "./schema/expenses";
 import * as emailCredentialsSchema from "./schema/email_credentials";
-import * as filesToOrdersSchema from "./schema/files_to_orders";
+import * as filesToOrdersSchema from "./schema/orders_to_files";
 
 // for migrations
 const migrationClient = postgres(env.DATABASE_URL, { max: 1 });

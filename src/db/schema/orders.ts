@@ -13,7 +13,8 @@ import { metadata } from "./_metadata";
 import { addresses } from "./addresses";
 import { relations } from "drizzle-orm";
 import { files } from "./files";
-import { filesToOrders } from "./files_to_orders";
+import { ordersToFiles } from "./orders_to_files";
+import { clients } from "./clients";
 
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
@@ -26,13 +27,12 @@ export const orders = pgTable("orders", {
   // address: integer("address").references(()=> addresses.id),
 
   // spreadsheets: text('spreadsheet[]_undefined'),
-  // designs: text('design[]_undefined'),
   // emails: text('emailmessage[]_undefined'),
   // products: text('product[]_undefined'),
   // employees: text('user[]_undefined'),
   // files: text('file[]_undefined'),
   workTime: doublePrecision("work_time"),
-  // client: text('client_id)').references(()=> client.id),
+  clientId: integer("client_id").references(() => clients.id),
   // address: text('typeaddress_id)').references(()=> address.id),
   // clientId: integer("client_id"),
   addressId: integer("address_id"),
@@ -44,5 +44,9 @@ export const ordersRelations = relations(orders, ({ one, many }) => ({
     fields: [orders.addressId],
     references: [addresses.id],
   }),
-  filesToOrders: many(filesToOrders),
+  client: one(clients, {
+    fields: [orders.clientId],
+    references: [clients.id],
+  }),
+  ordersToFiles: many(ordersToFiles),
 }));
