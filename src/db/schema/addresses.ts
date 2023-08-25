@@ -12,6 +12,7 @@ import {
 import { metadata } from "./_metadata";
 import { relations } from "drizzle-orm";
 import { clients } from "./clients";
+import { orders } from "./orders";
 
 export const addresses = pgTable("addresses", {
   id: serial("id").primaryKey(),
@@ -27,4 +28,5 @@ export const addresses = pgTable("addresses", {
 
 export const addresses_relations = relations(addresses, ({ many }) => ({
   clients: many(clients),
+  order: many(orders),
 }));

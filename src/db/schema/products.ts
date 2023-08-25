@@ -8,6 +8,8 @@ import {
   varchar,
   doublePrecision,
   date,
+  makePgArray,
+  PgArray,
 } from "drizzle-orm/pg-core";
 import { metadata } from "./_metadata";
 import { relations } from "drizzle-orm";
@@ -18,7 +20,8 @@ export const products = pgTable("products", {
   name: varchar("name", { length: 255 }).unique(),
   category: varchar("category", { length: 255 }),
   description: text("description"),
-  iconId: integer("iconId"),
+  colors: varchar("colors", { length: 64 }).array(),
+  sizes: varchar("sizes", { length: 255 }).array(),
   ...metadata,
 });
 
